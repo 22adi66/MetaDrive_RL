@@ -38,12 +38,17 @@ RL_project/
 │   └── curriculum.py              # Curriculum logic for traffic ramping
 │
 ├── scripts/                        # Demo and utility scripts
-│   ├── demo_simple_road.py        # Basic demonstration
+│   ├── simple_run.py              # Minimal evaluation runner
 │   ├── straight_road_with_traffic.py
-│   ├── csc_road_no_traffic.py
-│   ├── csc_road_with_traffic.py
+│   ├── roundabout_road_with_traffic.py
+│   ├── record_video.py            # Video capture utility
+│   ├── run_checkpoint_simple_map.py
 │   ├── road_demo_utils.py         # Shared demo utilities
-│   └── ... (6 additional demo scripts)
+│   └── ... (additional demo variants)
+
+├── video/                          # Video recording utilities
+│   ├── __init__.py
+│   └── recorder.py               # Frame capture and encoding helpers
 │
 ├── checkpoints/                    # Trained model checkpoints (gitignored)
 │   ├── sac_step0100000.zip
@@ -54,9 +59,9 @@ RL_project/
 │
 ├── logs/                           # Training logs and TensorBoard events (gitignored)
 │   ├── training.log               # Detailed training run
-│   └── sac_*/                      # TensorBoard event directories
-│
-│
+│   └── sac_*/                     # TensorBoard event directories
+
+├── CHANGELOG.md                   # System architecture update notes
 ├── TRAINING_STATISTICS.md         # Real training performance metrics
 ├── README.md                       # This file
 ├── requirements.txt               # Python dependencies
@@ -404,7 +409,7 @@ from stable_baselines3 import SAC
 from env.metadrive_env import MetaDriveAgentEnv
 
 env = MetaDriveAgentEnv(traffic_density=0.3)
-model = SAC.load("checkpoints/sac_step2000000.zip", device="cpu")
+model = SAC.load("checkpoints/sac_step4000000_final.zip", device="cpu")
 
 obs, info = env.reset()
 for step in range(1000):
