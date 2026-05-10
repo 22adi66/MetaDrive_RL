@@ -51,17 +51,9 @@ RL_project/
 │   └── recorder.py               # Frame capture and encoding helpers
 │
 ├── checkpoints/                    # Trained model checkpoints (gitignored)
-│   ├── sac_step0100000.zip
-│   ├── sac_step2800000.zip
-│   ├── sac_step3000000.zip
-│   ├── sac_step4000000.zip
 │   └── sac_step4000000_final.zip
 │
-├── logs/                           # Training logs and TensorBoard events (gitignored)
-│   ├── training.log               # Detailed training run
-│   └── sac_*/                     # TensorBoard event directories
-
-├── CHANGELOG.md                   # System architecture update notes
+                
 ├── TRAINING_STATISTICS.md         # Real training performance metrics
 ├── README.md                       # This file
 ├── requirements.txt               # Python dependencies
