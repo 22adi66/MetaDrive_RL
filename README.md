@@ -45,10 +45,6 @@ RL_project/
 │   ├── road_demo_utils.py         # Shared demo utilities
 │   └── ... (6 additional demo scripts)
 │
-├── video/                          # Video recording utilities
-│   ├── __init__.py
-│   └── recorder.py                # Frame capture and video encoding
-│
 ├── checkpoints/                    # Trained model checkpoints (gitignored)
 │   ├── sac_step0100000.zip
 │   ├── sac_step2800000.zip
@@ -60,9 +56,7 @@ RL_project/
 │   ├── training.log               # Detailed training run
 │   └── sac_*/                      # TensorBoard event directories
 │
-├── videos/                         # Generated demo videos (gitignored)
 │
-├── CHANGELOG.md                   # System architecture update documentation
 ├── TRAINING_STATISTICS.md         # Real training performance metrics
 ├── README.md                       # This file
 ├── requirements.txt               # Python dependencies
@@ -332,18 +326,6 @@ Quick validation test (1000 steps):
 python training/train.py --test 1000
 ```
 
-### Video Recording
-
-Generate video from trained checkpoint:
-```bash
-python scripts/record_video.py --checkpoint checkpoints/sac_step2000000.zip --out demo_output.mp4
-```
-
-Specify map and traffic:
-```bash
-python scripts/record_video.py --checkpoint checkpoints/sac_step3000000.zip --map OOO --traffic 0.05 --out roundabout_demo.mp4
-```
-
 ## Configuration
 
 All training parameters are centralized in `configs/config.py`:
@@ -376,21 +358,6 @@ Modify in REWARD_CONFIG dictionary:
 - c_turn: 0.8 (turn quality)
 - c_traffic_dist: 0.5 (traffic distance)
 - c_overtake: 1.5 (overtaking bonus)
-
-## Model Checkpoints
-
-Available trained checkpoints:
-- sac_step0100000.zip: Early baseline (100K steps, no traffic)
-- sac_step2800000.zip: Advanced model (2.8M equivalent)
-- sac_step3000000.zip: Mature model (3M equivalent)
-- sac_step4000000.zip: Extended model (4M equivalent)
-- sac_step4000000_final.zip: Final checkpoint (4M training)
-
-All checkpoints are backward compatible and load with:
-```python
-from stable_baselines3 import SAC
-model = SAC.load("checkpoints/sac_step2000000.zip", device="cpu")
-```
 
 ## Architecture Overview
 
@@ -428,13 +395,6 @@ Located in `env/metadrive_env.py`:
 - Episode length reduced 13% at phase 3 due to traffic stress
 - FPS degradation from 245 to 155 fps over training duration
 - Reward plateau after convergence suggests limited policy improvement post-convergence
-
-### Recommendations for Extended Training (4M Steps)
-- Increase entropy coefficient initialization to prevent early collapse
-- Extend curriculum to 5 phases with 45% traffic density
-- Train on multiple map types (OOO, CSC, S) for robustness
-- Optimize replay buffer operations to maintain FPS
-- Consider batch size increase to 512 for better sample efficiency
 
 ## Deployment
 
@@ -493,21 +453,7 @@ python scripts/demo_simple_road.py
 - SAC Algorithm: Haarnoja et al. "Soft Actor-Critic Algorithms and Applications" (2019)
 - Curriculum Learning: Bengio et al. "Curriculum Learning" (2009)
 
-## Citation
-
-If you use this codebase in research, please cite:
-```
-MetaDrive Agent: Traffic-Aware Autonomous Driving
-Training Data: 2M steps, 2024
-Architecture: SAC with 11-component reward function
-```
-
 ## License
 
 This project uses MetaDrive (Apache 2.0) and stable-baselines3 (MIT).
 
-## Authors and Contributors
-
-Development and training conducted on MetaDrive v0.4.3 with stable-baselines3 framework.
-
-Training conducted on Windows 10/11 with Python 3.10.
