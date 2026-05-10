@@ -1,0 +1,80 @@
+# ============================================================
+# Git Ignore — Traffic-Aware MetaDrive Agent
+# Prevents tracking of large files and generated artifacts
+# ============================================================
+
+# Checkpoints (binary models, 100+ MB each)
+checkpoints/
+*.zip
+
+# Training logs and TensorBoard data
+logs/
+*.log
+*.csv
+runs/
+events.out.tfevents.*
+tensorboard/
+
+# Generated videos and screenshots
+videos/
+*.mp4
+*.avi
+*.png
+*.jpg
+*.jpeg
+screenshots/
+
+# Python environments
+venv/
+venv310/
+env/
+ENV/
+.venv
+.env
+*.venv
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+
+# IDE and editor files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Temporary files
+*.tmp
+*.bak
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS files
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# CUDA/GPU specific
+*.o
+*.so.1
+
+# MetaDrive/Panda3D temporary files
+*.pyo
+.Xvfb_lock
