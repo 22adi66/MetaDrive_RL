@@ -13,7 +13,6 @@ The system demonstrates driving behavior across multiple map types and traffic c
 - **Curriculum Learning**: 5-phase training schedule gradually increasing traffic density from 0% to 45%
 - **Multi-Map Support**: Trained on diverse procedurally generated road types (roundabouts, intersections, curves, straights)
 - **Challenging Dense Traffic**: Trained to 4M timesteps achieving 165 reward in 45% traffic (33% of baseline), demonstrating agent adaptation to extreme conditions
-- **Efficient Training**: Completed 2 million training steps in 3 hours 35 minutes on CPU
 - **Backward Compatible**: Old checkpoints load seamlessly with new reward function
 
 ## Project Structure
